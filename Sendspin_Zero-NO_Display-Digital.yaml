@@ -46,7 +46,7 @@ ota:
   - platform: esphome
 
 wifi:
-  output_power: 8.5dB
+  output_power: 20dB
   ap:
 
 improv_serial:
