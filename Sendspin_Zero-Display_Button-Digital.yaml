@@ -10,7 +10,7 @@ substitutions:
   # Image model options are: AlbertQuackmore, Alita, Casita, Gwen, HA-character, ha-girl, Hacker, Salem, Sarah, Shaun
   imagemodel: "HA-character"
 
-  media_sample_rate: 48000
+  media_sample_rate: 44100
 
 packages:
   extcomp:
@@ -172,16 +172,17 @@ sendspin:
 
 i2s_audio:
   - id: i2s_audio_bus
-    i2s_lrclk_pin: GPIO4
-    i2s_bclk_pin: GPIO5
 
 speaker:
   - platform: i2s_audio
     id: box_speaker
+    sample_rate: ${media_sample_rate}
+    i2s_dout_pin: GPIO4
+    spdif_mode: true
     i2s_audio_id: i2s_audio_bus
-    i2s_dout_pin: GPIO6
     dac_type: external
     channel: stereo
+    use_apll: true
 
   - platform: mixer
     id: mixing_speaker

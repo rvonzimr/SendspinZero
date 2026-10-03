@@ -44,11 +44,11 @@ packages:
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}
-  min_version: 2026.8.0
+  min_version: 2026.9.0
   name_add_mac_suffix: true
   project:
     name: realdeco.sendspin_zero
-    version: "2026.8.0"
+    version: "2026.9.0"
   on_boot:
     priority: -100
     then:
@@ -735,7 +735,7 @@ script:
                   entity_id: "{{ weather_entity }}"
                   type: daily
                 variables:
-                  weather_entity: |-
+                  weather_entity: !lambda |-
                     return id(ha_weather_entity).state;
                 capture_response: true
                 on_success:
@@ -1576,9 +1576,9 @@ script:
                         media_content_type: music
                         media_content_id: "{{ media_url }}"
                       variables:
-                        target_entity: |-
+                        target_entity: !lambda |-
                           return id(ha_media_player_entity).state;
-                        media_url: |-
+                        media_url: !lambda |-
                           const char *urls[10] = {
                             id(media_url_1).state.c_str(), id(media_url_2).state.c_str(), id(media_url_3).state.c_str(),
                             id(media_url_4).state.c_str(), id(media_url_5).state.c_str(), id(media_url_6).state.c_str(),
@@ -1621,7 +1621,7 @@ script:
                       data_template:
                         entity_id: "{{ target_entity }}"
                       variables:
-                        target_entity: |-
+                        target_entity: !lambda |-
                           const char *entities[6] = {
                             id(control_device_1).state.c_str(),
                             id(control_device_2).state.c_str(),
@@ -1640,7 +1640,7 @@ script:
                         entity_id: "{{ target_entity }}"
                         brightness: "{{ brightness_value }}"
                       variables:
-                        target_entity: |-
+                        target_entity: !lambda |-
                           const char *entities[6] = {
                             id(control_device_1).state.c_str(),
                             id(control_device_2).state.c_str(),
@@ -1652,7 +1652,7 @@ script:
                           int index = id(selected_control_index);
                           if (index < 1 || index > 6) index = 1;
                           return std::string(entities[index - 1]);
-                        brightness_value: |-
+                        brightness_value: !lambda |-
                           int bri = (int) lroundf(id(knob_control_pct) * 255.0f / 100.0f);
                           if (bri < 1) bri = 1;
                           if (bri > 255) bri = 255;

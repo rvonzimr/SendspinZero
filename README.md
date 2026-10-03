@@ -1,6 +1,8 @@
 
 # Minimalistic Sendspin Media Player for Home Assistant
 
+NOTE: This is a DIY project, those that prefer Off-the-shelf devicea you can buy and use right away, there is a project for that here: https://github.com/RealDeco/sendspin-guition
+
 <img width="1500" height="603" alt="Screenshot" src="https://github.com/user-attachments/assets/cf58463a-1112-4aff-8982-a297d2f72e1a" />
 
 A tiny [Sendspin](https://www.sendspin-audio.com) media player with **cover art display** and a **weather clock**, built around the **ESP32-S3 Zero**.
@@ -412,6 +414,69 @@ This is the only device based on esp32-s2 Supermini due to it's battery connecti
 
 (3D file includes both with and without hole for switch)
 
-<img width="294" height="155" src="https://github.com/user-attachments/assets/6398f7b7-6a31-48bf-891a-95dad5d790a5" />
+---
+
+## SendspinZero-Source
+
+This device differs from the others by being an input device instead of an output device.
+
+When the Sendspin Source role is supported in ESPHome, it will allow external audio devices such as turntables, radios, cassette decks, CD players, and other devices with audio output to be connected to Music Assistant and played in sync across your Sendspin devices.
+
+<img width="300" src="https://github.com/user-attachments/assets/2f3a3647-0e5f-46c0-98bf-bb9e9f90b85c" />
+
+<img width="300" src="https://github.com/user-attachments/assets/d0d03243-bbb5-40b1-9507-065afbf4530a" />
+
+<img width="300" src="https://github.com/user-attachments/assets/852267ae-91e7-4e0e-8733-2bef4d0a82a2" />
+
+Important to remove two capasitors from the PCM1808 or the sound would not be clear:
+
+[Open video](https://github.com/user-attachments/assets/831a7ad7-ee62-4282-af22-7b3cd60827db)
+
+
+
+
+
+3D files are in [`3D_Files`](3D_Files)
+
+## Pin Mapping
+
+### ESP32-S3 → PCM1808
+
+| ESP32S3 Zero  | PCM1808 pin	|
+| ------------- | --------------|
+| 5V		| 5V		|
+| GND		| GND		|
+| 3.3V		| 3.3V		|
+| GPIO 3	| BCK		|
+| GPIO 4	| OUT		|
+| GPIO 5	| LRC		|
+| GPIO 6	| SCK		|
+
+
+| 3.5mm jack	| PCM1808 pin	|
+| ------------- | --------------|
+| Right		| RIN		|
+| GND		| - (GND)	|
+| Left		| LIN		|
+
+## Parts List
+
+* **1 × ESP32-S3 Zero**
+  [https://www.aliexpress.com/item/1005009890203011.html](https://www.aliexpress.com/item/1005009890203011.html)
+
+  (be sure you select esp32-s3, not esp32-c3 which the page defaults to.)
+
+* **1 × PCM1808 ADC**
+  [https://www.aliexpress.com/item/1005008885079639.html](https://www.aliexpress.com/item/1005008885079639.html)
+
+
+* **1 × 3.5mm female Jack**
+  [https://www.aliexpress.com/item/1005008243857446.html](https://www.aliexpress.com/item/1005008243857446.html)
+
+* 10 short cords.
+
+---
+
+EOL
 
 ---
